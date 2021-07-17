@@ -1,0 +1,178 @@
+# Filename: klingberg.kv
+#:kivy 1.11.0
+
+<Table>:
+	
+
+<MyButton>:
+	#background_normal: 'k1up.png'
+#	background_down: 'k1down.png'
+	on_press: root._on_press(self)
+
+<MyFloatLayout@FloatLayout>
+
+<Hand@Button>:
+	angle: 0
+	canvas.before:
+		PushMatrix
+		Rotate:
+			angle: root.angle
+			axis: 0, 0, -1
+			origin: 215, 550
+	canvas.after:
+		PopMatrix
+
+<Klingberg>:
+	canvas:
+		Color:
+			rgba: 1, 1, 1, 1
+		Rectangle:
+			size: root.size
+			source: 'background1.png'
+		Rectangle:
+			pos: 20, 1060
+			size: 1040, 1000
+			source: 'table_before.png'
+			
+		
+		Ellipse:
+			pos: 15, 350
+			size: 400, 400
+			source: 'clock.png'
+			
+	MyFloatLayout:	
+		Hand:
+			background_color: 0, 0, 0, 0
+			angle: 0
+			id: _timer
+			size_hint: None, None
+			pos: 210 , 550
+			size: 10, 230
+			Image:
+				source: 'hand3.png'
+				y: self.parent.y-20
+            	x: self.parent.x-50
+            	size_hint: None, None
+            	size: 100, 200
+				allow_stretch: True
+	
+	Table:
+		size_hint: .9, .45
+		pos_hint: {'center_x': .5, 'y': .525}
+        
+	Display:
+		orientation: 'horizontal'
+		size_hint: .9, .1
+		pos_hint: {'center_x': .5, 'y': .4}
+		spacing: 10
+		Button:
+			text: ""
+			color: 0,0,0,1
+			background_normal: 'screen_p.png'
+			background_disabled_normal: 'screen_p_off.png'
+			disabled: True
+			#background_color: (1, 0, 1, 1)
+			font_size: 100
+			size_hint_x: 1
+		Button:
+			text: ""
+			color: 0, 0, 0, 1
+			background_normal: 'screen_green.png'
+			background_disabled_normal: 'screen_g_off.png'
+			disabled: True
+			
+			
+			font_size: 120
+			size_hint_x: .7
+			
+		ToggleButton:
+			background_normal: 'start.png'
+			background_down: 'stop.png'
+			color: 0,0,0,0
+			text: 'Start'
+			on_press: root._start()
+			size_hint_x: .5
+			
+	Keypad:
+		cols: 3
+		rows: 4
+		size_hint: .5, .3
+		pos_hint: {'x': .42, 'y': .05}
+		MyButton:
+			background_normal: 'k1_up.png'
+			background_down: 'k1_down.png'
+			color: 0,0,0,0
+			text: '1'
+		MyButton:
+			background_normal: 'k2_up.png'
+			background_down: 'k2_down.png'
+			color: 0,0,0,0
+			text: '2'
+		MyButton:
+			background_normal: 'k3_up.png'
+			background_down: 'k3_down.png'
+			color: 0,0,0,0
+			text: '3'
+		MyButton:
+			background_normal: 'k4_up.png'
+			background_down: 'k4_down.png'
+			color: 0,0,0,0
+			text: '4'
+		MyButton:
+			background_normal: 'k5_up.png'
+			background_down: 'k5_down.png'
+			color: 0,0,0,0
+            text: '5'
+		MyButton:
+			background_normal: 'k6_up.png'
+			background_down: 'k6_down.png'
+			color: 0,0,0,0
+			text: '6'
+		MyButton:
+			background_normal: 'k7_up.png'
+			background_down: 'k7_down.png'
+			color: 0,0,0,0
+			text: '7'
+		MyButton:
+			background_normal: 'k8_up.png'
+			background_down: 'k8_down.png'
+			color: 0,0,0,0
+			text: '8'
+		MyButton:
+			background_normal: 'k9_up.png'
+			background_down: 'k9_down.png'
+			color: 0,0,0,0
+			text: '9'
+		MyButton:
+			background_normal: 'kDel_up.png'
+			background_down: 'kDel_down.png'
+			color: 0,0,0,0
+			background_color: (1, 0, 0, 1)
+			text: 'Del'
+		MyButton:
+			background_normal: 'k0_up.png'
+			background_down: 'k0_down.png'
+			color: 0,0,0,0
+			
+			text: '0'
+		MyButton:
+			background_normal: 'kEnter_up.png'
+			background_down: 'kEnter_down.png'
+			color: 0,0,0,0
+			background_color: (0, 1, 0, 1)
+			text: 'Enter'
+	
+	Meter:
+		Button:
+			color: 0,0,0,1
+			background_normal: 'tablet.png'
+			pos_hint: {'x': .05, 'y': .05}
+			font_size: 64
+			text: 'Level: '+ str(app.level)+'\nKvar: '+str(len(app.product_list) + 1)
+			size_hint: .3, .1
+            
+		
+
+            
+            
+	
